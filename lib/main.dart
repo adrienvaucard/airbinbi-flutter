@@ -4,6 +4,7 @@ import 'package:airbinbi_flutter/pages/detailsPage.dart';
 import 'package:airbinbi_flutter/pages/homePage.dart';
 import 'package:airbinbi_flutter/pages/placesPage.dart';
 import 'package:airbinbi_flutter/routes.dart';
+import 'package:airbinbi_flutter/types/placeArguments.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -21,11 +22,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      onGenerateRoute: (settings){
+        if(settings.name == ROUTE_LIST_PLACES_PAGE){
+          return MaterialPageRoute(builder:(context) =>
+              PlacesPage(settings.arguments as int));
+        }
+      },
       initialRoute: ROUTE_HOME_PAGE,
       routes: <String, WidgetBuilder> {
         ROUTE_HOME_PAGE: (BuildContext context) => HomePage(),
         ROUTE_LIST_CITIES_PAGE: (BuildContext context) => CitiesPage(),
-        ROUTE_LIST_PLACES_PAGE: (BuildContext context) => PlacesPage(),
+        //ROUTE_LIST_PLACES_PAGE: (BuildContext context) => PlacesPage(),
         ROUTE_PLACE_DETAILS_PAGE: (BuildContext context) => DetailsPage(),
         ROUTE_LIST_DATES_PAGE: (BuildContext context) => DatesPage(),
       },

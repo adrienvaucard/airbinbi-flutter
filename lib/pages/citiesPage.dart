@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:airbinbi_flutter/bo/City.dart';
+import 'package:airbinbi_flutter/types/placeArguments.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
@@ -47,9 +48,10 @@ class _CitiesPageState extends State<CitiesPage> {
               separatorBuilder: (BuildContext context, int index) => const Divider(thickness: 1.5),
               itemBuilder: (context, index) {
                   return InkWell(
-                    onTap: () => ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text("❤"),
-                    )),
+                    onTap: () => Navigator.of(context).pushNamed(
+                      '/places',
+                      arguments: snapshot.data![index].id
+                    ),
                     child: ListTile(
                       leading: CircleAvatar(
                         backgroundColor: Colors.transparent,
