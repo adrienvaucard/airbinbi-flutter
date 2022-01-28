@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:airbinbi_flutter/bo/City.dart';
-import 'package:airbinbi_flutter/types/placeArguments.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 

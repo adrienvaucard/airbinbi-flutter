@@ -57,6 +57,48 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
     ),
-      );
+      bottomNavigationBar: BottomAppBar(
+        child: Container(
+          color: Colors.white,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Spacer(),
+              IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.search),
+                  tooltip: "Explorer",
+              ),
+              Spacer(),
+              IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.favorite_outline),
+                  tooltip: "Favoris",
+
+              ),
+              Spacer(),
+              IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.airplanemode_active),
+                  tooltip: "Voyages",
+              ),
+              Spacer(),
+              IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.message_outlined),
+                  tooltip: "Messages",
+              ),
+              Spacer(),
+              IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.person),
+                  tooltip: "Connexion",
+              ),
+              Spacer(),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

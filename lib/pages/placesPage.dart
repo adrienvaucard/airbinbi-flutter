@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:airbinbi_flutter/bo/Place.dart';
-import 'package:airbinbi_flutter/types/placeArguments.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
@@ -48,28 +47,38 @@ class _PlacesPageState extends State<PlacesPage> {
               itemCount: snapshot.data!.length,
               separatorBuilder: (BuildContext context, int index) => const Divider(thickness: 1.5),
               itemBuilder: (context, index) {
-                return InkWell(
-                  onTap: () => Navigator.of(context).pushNamed(
-                      '/details',
-
-                  ),
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.transparent,
-                      child: Image.network(
-                          "https://flutter-learning.mooo.com" + snapshot.data![index].pic.url,
-                          height: 150,
-                          fit:BoxFit.fill
+                if (snapshot.data!.isNotEmpty) {
+                  return InkWell(
+                    onTap: () => Navigator.of(context).pushNamed(
+                        '/details',
+                        arguments: snapshot.data![index]
+                    ),
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: Colors.transparent,
+                        child: Image.network(
+                            "https://flutter-learning.mooo.com" + snapshot.data![index].pic.url,
+                            height: 150,
+                            fit:BoxFit.fill
+                        ),
+                      ),
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(snapshot.data![index].title),
+                        ],
                       ),
                     ),
-                    title: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  );
+                } else {
+                  return Center(
+                    child: Column(
                       children: [
-                        Text(snapshot.data![index].title),
+                        Text("Il n'y a aucun bien de disponible pour cette ville :(")
                       ],
                     ),
-                  ),
-                );
+                  );
+                }
               }
           );
         }
@@ -90,6 +99,7 @@ class _PlacesPageState extends State<PlacesPage> {
               lsPlaces.add(Place.fromJson(place));
             }
             _streamControllerListPlaces.sink.add(lsPlaces);
+            log(lsPlaces.toString());
           }
         },
         onError: (_, err) => log("Error while fetching cities"));
